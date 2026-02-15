@@ -1,4 +1,5 @@
 # Проектная работа 11-го спринта
+https://github.com/marsyk-ops/stellar-burgers
 
 [Макет](<https://www.figma.com/file/vIywAvqfkOIRWGOkfOnReY/React-Fullstack_-Проектные-задачи-(3-месяца)_external_link?type=design&node-id=0-1&mode=design>)
 
@@ -17,3 +18,25 @@
 ## Важно:
 
 Для корректной работы запросов к серверу необходимо добавить переменную BURGER_API_URL в окружение. Сама ссылка находится в файле `.env.example`.
+
+
+## Запуск проекта:
+
+1. Клонируйте репозиторий:
+
+git clone 
+
+2. Установите зависимости:
+
+npm install
+3. Создайте .env файл в корне:
+
+# .env
+BURGER_API_URL=https://norma.nomoreparties.space/api
+4. Запустите сервер разработки:
+
+npm start
+
+5. Откройте в браузере:
+
+http://localhost:4000

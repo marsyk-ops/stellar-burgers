@@ -1,23 +1,36 @@
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useEffect } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from '../../services/store';
+import { fetchOrderByNumber as fetchOrderByNumberFromFeeds } from '../../services/slices/feedsSlice';
+import { fetchOrderByNumber as fetchOrderByNumberFromOrders } from '../../services/slices/ordersSlice';
 import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 
 export const OrderInfo: FC = () => {
-  /** TODO: взять переменные orderData и ingredients из стора */
-  const orderData = {
-    createdAt: '',
-    ingredients: [],
-    _id: '',
-    status: '',
-    name: '',
-    updatedAt: 'string',
-    number: 0
-  };
+  const { number } = useParams<{ number: string }>();
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const ingredients = useSelector((state) => state.ingredients.ingredients);
 
-  const ingredients: TIngredient[] = [];
+  const isFromFeeds = location.pathname.startsWith('/feed');
+  const currentOrder = isFromFeeds
+    ? useSelector((state) => state.feeds.currentOrder)
+    : useSelector((state) => state.orders.currentOrder);
 
-  /* Готовим данные для отображения */
+  useEffect(() => {
+    if (number) {
+      const orderNumber = Number(number);
+      if (isFromFeeds) {
+        dispatch(fetchOrderByNumberFromFeeds(orderNumber));
+      } else {
+        dispatch(fetchOrderByNumberFromOrders(orderNumber));
+      }
+    }
+  }, [dispatch, number, isFromFeeds]);
+
+  const orderData = currentOrder;
+
   const orderInfo = useMemo(() => {
     if (!orderData || !ingredients.length) return null;
 
@@ -28,7 +41,7 @@ export const OrderInfo: FC = () => {
     };
 
     const ingredientsInfo = orderData.ingredients.reduce(
-      (acc: TIngredientsWithCount, item) => {
+      (acc: TIngredientsWithCount, item: string) => {
         if (!acc[item]) {
           const ingredient = ingredients.find((ing) => ing._id === item);
           if (ingredient) {
