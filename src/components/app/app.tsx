@@ -1,4 +1,10 @@
-import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Routes,
+  Route,
+  useLocation,
+  useNavigate,
+  useSearchParams
+} from 'react-router-dom';
 import { useEffect } from 'react';
 import {
   ConstructorPage,
@@ -26,15 +32,22 @@ import styles from './app.module.css';
 const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const background = location.state?.background;
+
+  const modalOrderId = searchParams.get('orderModal');
+  const modalIngredientId = searchParams.get('ingredientModal');
 
   useEffect(() => {
     dispatch(checkUserAuth());
   }, [dispatch]);
 
   const handleModalClose = () => {
-    navigate(background?.pathname || '/', { replace: true });
+    searchParams.delete('orderModal');
+    searchParams.delete('ingredientModal');
+    setSearchParams(searchParams);
+    navigate(-1); 
   };
 
   return (
@@ -104,7 +117,7 @@ const App = () => {
         <Route path='*' element={<NotFound404 />} />
       </Routes>
 
-      {background && (
+            {background && (
         <Routes>
           <Route
             path='/ingredients/:id'
@@ -125,11 +138,40 @@ const App = () => {
           <Route
             path='/profile/orders/:number'
             element={
-              <Modal title='' onClose={handleModalClose}>
-                <OrderInfo />
-              </Modal>
+              <ProtectedRoute>
+                <Modal title='' onClose={handleModalClose}>
+                  <OrderInfo />
+                </Modal>
+              </ProtectedRoute>
             }
           />
+        </Routes>
+      )}
+
+      {!background && (modalOrderId || modalIngredientId) && (
+        <Routes>
+          {modalIngredientId && (
+            <Route
+              path='/ingredients/:id'
+              element={
+                <Modal title='Детали ингредиента' onClose={handleModalClose}>
+                  <IngredientDetails />
+                </Modal>
+              }
+            />
+          )}
+          {modalOrderId && (
+            <Route
+              path='/profile/orders/:number'
+              element={
+                <ProtectedRoute>
+                  <Modal title='' onClose={handleModalClose}>
+                    <OrderInfo />
+                  </Modal>
+                </ProtectedRoute>
+              }
+            />
+          )}
         </Routes>
       )}
     </div>
