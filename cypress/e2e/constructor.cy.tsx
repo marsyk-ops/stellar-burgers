@@ -13,38 +13,32 @@ describe('Конструктор бургера', () => {
   });
 
   it('должен загружать ингредиенты', () => {
-    cy.wait('@getIngredients').then(() => {
-      cy.contains('Краторная булка N-200i').should('be.visible');
-      cy.contains('Биокотлета из марсианской Магнолии').should('be.visible');
-    });
+    cy.contains('Краторная булка N-200i').should('be.visible');
+    cy.contains('Биокотлета из марсианской Магнолии').should('be.visible');
   });
 
   it('должен добавлять булку в конструктор', () => {
-    cy.wait('@getIngredients');
     cy.addBun('Краторная булка N-200i');
-    
     cy.contains('Краторная булка N-200i (верх)').should('be.visible');
     cy.contains('Краторная булка N-200i (низ)').should('be.visible');
   });
 
   it('должен добавлять начинку в конструктор', () => {
-    cy.wait('@getIngredients');
     cy.addBun('Краторная булка N-200i');
     cy.addFilling('Биокотлета из марсианской Магнолии');
-    
     cy.contains('Биокотлета из марсианской Магнолии').should('be.visible');
   });
 
   it('должен открывать модальное окно ингредиента при клике', () => {
-    cy.wait('@getIngredients');
     cy.openIngredientModal('Краторная булка N-200i');
-    
     cy.contains('Детали ингредиента').should('be.visible');
     cy.contains('Краторная булка N-200i').should('be.visible');
+    cy.contains(/\d+\s*ккал/).should('be.visible');
+    cy.contains(/\d+\s*г/).should('be.visible');
+    cy.contains(/\d+\s*₽/).should('be.visible');
   });
 
   it('должен закрывать модальное окно по клику на крестик', () => {
-    cy.wait('@getIngredients');
     cy.openIngredientModal('Краторная булка N-200i');
     cy.contains('Детали ингредиента').should('be.visible');
     
@@ -54,7 +48,6 @@ describe('Конструктор бургера', () => {
   });
 
   it('должен закрывать модальное окно по клику на оверлей', () => {
-    cy.wait('@getIngredients');
     cy.openIngredientModal('Краторная булка N-200i');
     cy.contains('Детали ингредиента').should('be.visible');
     
@@ -64,7 +57,6 @@ describe('Конструктор бургера', () => {
   });
 
   it('должен закрывать модальное окно по нажатию Escape', () => {
-    cy.wait('@getIngredients');
     cy.openIngredientModal('Краторная булка N-200i');
     cy.contains('Детали ингредиента').should('be.visible');
     
@@ -74,7 +66,6 @@ describe('Конструктор бургера', () => {
   });
 
   it('должен создавать заказ', () => {
-    cy.wait('@getIngredients');
     cy.addBun('Краторная булка N-200i');
     cy.addFilling('Биокотлета из марсианской Магнолии');
     
@@ -85,7 +76,6 @@ describe('Конструктор бургера', () => {
   });
 
   it('должен закрывать модальное окно заказа и очищать конструктор', () => {
-    cy.wait('@getIngredients');
     cy.addBun('Краторная булка N-200i');
     cy.addFilling('Биокотлета из марсианской Магнолии');
     

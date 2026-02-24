@@ -47,7 +47,7 @@ const App = () => {
     searchParams.delete('orderModal');
     searchParams.delete('ingredientModal');
     setSearchParams(searchParams);
-    navigate(-1); 
+    navigate(-1);
   };
 
   return (
@@ -117,7 +117,7 @@ const App = () => {
         <Route path='*' element={<NotFound404 />} />
       </Routes>
 
-            {background && (
+      {background && (
         <Routes>
           <Route
             path='/ingredients/:id'
