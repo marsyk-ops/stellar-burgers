@@ -1,4 +1,6 @@
-import { useSelector } from '../../services/store';
+import { useSelector, useDispatch } from '../../services/store';
+import { useEffect } from 'react';
+import { fetchIngredients } from '../../services/slices/ingredientsSlice';
 
 import styles from './constructor-page.module.css';
 
@@ -8,26 +10,33 @@ import { Preloader } from '../../components/ui';
 import { FC } from 'react';
 
 export const ConstructorPage: FC = () => {
-  /** TODO: взять переменную из стора */
-  const isIngredientsLoading = false;
+  const dispatch = useDispatch();
+  const isIngredientsLoading = useSelector(
+    (state) => state.ingredients.isLoading
+  );
+  const ingredients = useSelector((state) => state.ingredients.ingredients);
+
+  useEffect(() => {
+    if (ingredients.length === 0 && !isIngredientsLoading) {
+      dispatch(fetchIngredients());
+    }
+  }, [dispatch, ingredients.length, isIngredientsLoading]);
+
+  if (isIngredientsLoading && ingredients.length === 0) {
+    return <Preloader />;
+  }
 
   return (
-    <>
-      {isIngredientsLoading ? (
-        <Preloader />
-      ) : (
-        <main className={styles.containerMain}>
-          <h1
-            className={`${styles.title} text text_type_main-large mt-10 mb-5 pl-5`}
-          >
-            Соберите бургер
-          </h1>
-          <div className={`${styles.main} pl-5 pr-5`}>
-            <BurgerIngredients />
-            <BurgerConstructor />
-          </div>
-        </main>
-      )}
-    </>
+    <main className={styles.containerMain}>
+      <h1
+        className={`${styles.title} text text_type_main-large mt-10 mb-5 pl-5`}
+      >
+        Соберите бургер
+      </h1>
+      <div className={`${styles.main} pl-5 pr-5`}>
+        <BurgerIngredients />
+        <BurgerConstructor />
+      </div>
+    </main>
   );
 };

@@ -1,9 +1,10 @@
 .wrap {
   margin: 0 auto;
-  width: 640px;
+  width: 100%;
+  max-width: 640px;
 }
 .number {
-  text-align: center;
+  text-align: left;
 }
 
 .status {
