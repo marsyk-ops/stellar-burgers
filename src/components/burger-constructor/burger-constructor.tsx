@@ -42,7 +42,7 @@ export const BurgerConstructor: FC = () => {
       await dispatch(createOrder(orderIngredients)).unwrap();
       dispatch(clearConstructor());
     } catch (error) {
-      // ignored
+      // Ошибка игнорируется
     }
   };
 

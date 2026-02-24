@@ -77,7 +77,7 @@ export const checkUserAuth = createAsyncThunk(
       try {
         await dispatch(getUser()).unwrap();
       } catch (error) {
-        // ignored
+        // Ошибка игнорируется
       }
     }
     return true;

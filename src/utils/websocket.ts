@@ -51,7 +51,7 @@ export class WebSocketService {
             });
           }
         } catch (error) {
-          // ignored
+          // Ошибка игнорируется
         }
       };
 

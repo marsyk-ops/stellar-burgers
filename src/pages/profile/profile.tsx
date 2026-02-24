@@ -38,7 +38,7 @@ export const Profile: FC = () => {
       ).unwrap();
       setFormValues({ password: '' });
     } catch (error) {
-      // ignored
+      // Ошибка игнорируется
     }
   };
 
