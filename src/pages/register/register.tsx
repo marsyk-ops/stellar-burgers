@@ -27,7 +27,7 @@ export const Register: FC = () => {
       ).unwrap();
       navigate('/', { replace: true });
     } catch (err) {
-      // ignored
+      // Ошибка игнорируется
     }
   };
 

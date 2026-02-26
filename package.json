@@ -54,7 +54,7 @@
     "babel-jest": "^29.7.0",
     "babel-loader": "^9.1.3",
     "css-loader": "^6.8.1",
-    "cypress": "^13.6.1",
+    "cypress": "^13.17.0",
     "dotenv-webpack": "^8.0.1",
     "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -73,6 +73,9 @@
     "jest-css-modules-transform": "^4.4.2",
     "jest-environment-jsdom": "^29.7.0",
     "jsdom": "^23.0.1",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.0",
+    "mochawesome-report-generator": "^6.3.2",
     "prettier": "^3.1.1",
     "prettier-eslint": "^16.2.0",
     "prettier-eslint-cli": "^8.0.1",
@@ -91,7 +94,14 @@
     "build-storybook": "storybook build",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "lint:fix": "npm run lint -- --fix",
-    "format": "prettier ./src --write"
+    "format": "prettier ./src --write",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:report": "cypress run && npm run cypress:merge-reports",
+    "cypress:merge-reports": "mochawesome-merge cypress/reports/*.json -o cypress/reports/mochawesome.json && marge cypress/reports/mochawesome.json -f report -o cypress/reports"
   },
   "eslintConfig": {
     "extends": [

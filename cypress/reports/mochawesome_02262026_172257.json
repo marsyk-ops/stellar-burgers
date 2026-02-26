@@ -1,0 +1,263 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 9,
+    "passes": 8,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-02-26T14:22:47.395Z",
+    "end": "2026-02-26T14:22:57.874Z",
+    "duration": 10479,
+    "testsRegistered": 9,
+    "passPercent": 88.88888888888889,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "820ded61-b8ac-4a4f-8ccb-b2a31b624830",
+      "title": "",
+      "fullFile": "cypress\\e2e\\constructor.cy.tsx",
+      "file": "cypress\\e2e\\constructor.cy.tsx",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7ea4f650-baa9-4cb4-9838-f509fa858222",
+          "title": "Конструктор бургера",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "должен загружать ингредиенты",
+              "fullTitle": "Конструктор бургера должен загружать ингредиенты",
+              "timedOut": null,
+              "duration": 1386,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('Краторная булка N-200i').should('be.visible');\ncy.contains('Биокотлета из марсианской Магнолии').should('be.visible');",
+              "err": {},
+              "uuid": "8edb2a25-3488-41e0-a846-01ff8441981f",
+              "parentUUID": "7ea4f650-baa9-4cb4-9838-f509fa858222",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "должен добавлять булку в конструктор",
+              "fullTitle": "Конструктор бургера должен добавлять булку в конструктор",
+              "timedOut": null,
+              "duration": 491,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.addBun('Краторная булка N-200i');\ncy.contains('Краторная булка N-200i (верх)').should('be.visible');\ncy.contains('Краторная булка N-200i (низ)').should('be.visible');",
+              "err": {},
+              "uuid": "4459d3ac-0f5c-44b7-bed9-54966cf28157",
+              "parentUUID": "7ea4f650-baa9-4cb4-9838-f509fa858222",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "должен добавлять начинку в конструктор",
+              "fullTitle": "Конструктор бургера должен добавлять начинку в конструктор",
+              "timedOut": null,
+              "duration": 485,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.addBun('Краторная булка N-200i');\ncy.addFilling('Биокотлета из марсианской Магнолии');\ncy.contains('Биокотлета из марсианской Магнолии').should('be.visible');",
+              "err": {},
+              "uuid": "7af3365b-0ba3-41ee-b625-d9950e792983",
+              "parentUUID": "7ea4f650-baa9-4cb4-9838-f509fa858222",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "должен открывать модальное окно ингредиента при клике",
+              "fullTitle": "Конструктор бургера должен открывать модальное окно ингредиента при клике",
+              "timedOut": null,
+              "duration": 4713,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.openIngredientModal('Краторная булка N-200i');\ncy.contains('Детали ингредиента').should('be.visible');\ncy.contains('Краторная булка N-200i').should('be.visible');\ncy.contains(/\\d+\\s*ккал/).should('be.visible');\ncy.contains(/\\d+\\s*г/).should('be.visible');\ncy.contains(/\\d+\\s*₽/).should('be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: '/\\d+\\s*ккал/' but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: '/\\d+\\s*ккал/' but never did.\n    at Context.eval (webpack://react-canonical/./cypress/e2e/constructor.cy.tsx:31:0)",
+                "diff": null
+              },
+              "uuid": "adaf7cdd-4d02-4bf8-82ab-1bd32fda0f3b",
+              "parentUUID": "7ea4f650-baa9-4cb4-9838-f509fa858222",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "должен закрывать модальное окно по клику на крестик",
+              "fullTitle": "Конструктор бургера должен закрывать модальное окно по клику на крестик",
+              "timedOut": null,
+              "duration": 590,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.openIngredientModal('Краторная булка N-200i');\ncy.contains('Детали ингредиента').should('be.visible');\ncy.closeModal();\ncy.contains('Детали ингредиента').should('not.exist');",
+              "err": {},
+              "uuid": "8f04ba4a-bd3d-4a08-a0ab-ae63c6c64924",
+              "parentUUID": "7ea4f650-baa9-4cb4-9838-f509fa858222",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "должен закрывать модальное окно по клику на оверлей",
+              "fullTitle": "Конструктор бургера должен закрывать модальное окно по клику на оверлей",
+              "timedOut": null,
+              "duration": 524,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.openIngredientModal('Краторная булка N-200i');\ncy.contains('Детали ингредиента').should('be.visible');\ncy.closeModalByOverlay();\ncy.contains('Детали ингредиента').should('not.exist');",
+              "err": {},
+              "uuid": "6bb5e8ad-a476-43b1-a051-6fcd84ccb1f5",
+              "parentUUID": "7ea4f650-baa9-4cb4-9838-f509fa858222",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "должен закрывать модальное окно по нажатию Escape",
+              "fullTitle": "Конструктор бургера должен закрывать модальное окно по нажатию Escape",
+              "timedOut": null,
+              "duration": 554,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.openIngredientModal('Краторная булка N-200i');\ncy.contains('Детали ингредиента').should('be.visible');\ncy.get('body').type('{esc}');\ncy.contains('Детали ингредиента').should('not.exist');",
+              "err": {},
+              "uuid": "c595490f-05b2-417a-b0cf-c97807be7251",
+              "parentUUID": "7ea4f650-baa9-4cb4-9838-f509fa858222",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "должен создавать заказ",
+              "fullTitle": "Конструктор бургера должен создавать заказ",
+              "timedOut": null,
+              "duration": 601,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.addBun('Краторная булка N-200i');\ncy.addFilling('Биокотлета из марсианской Магнолии');\ncy.createOrder();\ncy.contains('12345').should('be.visible');\ncy.contains('идентификатор заказа').should('be.visible');",
+              "err": {},
+              "uuid": "19cc123c-f1b9-4d61-82f7-56137d9aab2c",
+              "parentUUID": "7ea4f650-baa9-4cb4-9838-f509fa858222",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "должен закрывать модальное окно заказа и очищать конструктор",
+              "fullTitle": "Конструктор бургера должен закрывать модальное окно заказа и очищать конструктор",
+              "timedOut": null,
+              "duration": 671,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.addBun('Краторная булка N-200i');\ncy.addFilling('Биокотлета из марсианской Магнолии');\ncy.createOrder();\ncy.contains('12345').should('be.visible');\ncy.closeModalByOverlay();\ncy.contains('12345').should('not.exist');\ncy.contains('Выберите булки').should('be.visible');\ncy.contains('Выберите начинку').should('be.visible');",
+              "err": {},
+              "uuid": "efeeeaaa-0e53-4a66-9785-7fd745d708e7",
+              "parentUUID": "7ea4f650-baa9-4cb4-9838-f509fa858222",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8edb2a25-3488-41e0-a846-01ff8441981f",
+            "4459d3ac-0f5c-44b7-bed9-54966cf28157",
+            "7af3365b-0ba3-41ee-b625-d9950e792983",
+            "8f04ba4a-bd3d-4a08-a0ab-ae63c6c64924",
+            "6bb5e8ad-a476-43b1-a051-6fcd84ccb1f5",
+            "c595490f-05b2-417a-b0cf-c97807be7251",
+            "19cc123c-f1b9-4d61-82f7-56137d9aab2c",
+            "efeeeaaa-0e53-4a66-9785-7fd745d708e7"
+          ],
+          "failures": [
+            "adaf7cdd-4d02-4bf8-82ab-1bd32fda0f3b"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 10015,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.3.2"
+    }
+  }
+}
