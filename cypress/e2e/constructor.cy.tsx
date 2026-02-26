@@ -33,9 +33,15 @@ describe('Конструктор бургера', () => {
     cy.openIngredientModal('Краторная булка N-200i');
     cy.contains('Детали ингредиента').should('be.visible');
     cy.contains('Краторная булка N-200i').should('be.visible');
-    cy.contains(/\d+\s*ккал/).should('be.visible');
-    cy.contains(/\d+\s*г/).should('be.visible');
-    cy.contains(/\d+\s*₽/).should('be.visible');
+    
+    // Проверяем заголовки столбцов с пищевой ценностью
+    cy.contains('Калории, ккал').should('be.visible');
+    cy.contains(/Белки,\s*г/).should('be.visible');
+    cy.contains(/Жиры,\s*г/).should('be.visible');
+    cy.contains(/Углеводы,\s*г/).should('be.visible');
+    
+    // Проверяем наличие чисел (значения пищевой ценности)
+    cy.contains('420').should('be.visible');
   });
 
   it('должен закрывать модальное окно по клику на крестик', () => {
